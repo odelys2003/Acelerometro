@@ -13,9 +13,10 @@
 	//El identificador del visor de aceleración adetener
 	var watchID=null;
 	//Espere a que phonegap se inicilise
-	document.addEventListener("deviceready", onDeviseReady, false);
+	document.addEventListener("deviceready", onDeviceReady, false);
 	//Phonegap esta listo
-	function onDeviseReady(){
+	function onDeviceReady(){
+		alert("Inicialización correcta");
 	startWatch();
 	}
 	
@@ -24,13 +25,13 @@
 	//Actualizar acda 3 segundos
 	var options ={frecuency:3000};
 	
-	whatchID=navigator.accelerometer.watchAceleration(onSuccess, onError, options);
+	whatchID=navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
 	}
 	
 	//Deja de observar la aceleración
 	function stopWatch(){
 		if(watchID){
-			navigator.acelerometer.clearWatch(watchID);
+			navigator.accelerometer.clearWatch(watchID);
 			watchID=null;
 		}
 	}
@@ -39,7 +40,7 @@
 	
 	function onSuccess(acceleration){
 		var element=document.getElementById('accelerometer');
-		element.innerHTML='Aceleracion X: ' + acceleration.x + '<br /> Aceleracion Y: ' + acceleration.y + '<br />  Aceleracion Z: ' + acceleration.z + '<br />  Timestamp: '+ acceleration.timestamp + ' <br />';
+		element.innerHTML='Aceleración X: ' + acceleration.x + '<br /> Aceleración Y: ' + acceleration.y + '<br />  Aceleración Z: ' + acceleration.z + '<br />  Timestamp: '+ acceleration.timestamp + ' <br />';
 	}
 	
 	//onError: Fallo al obtener la aceleración
